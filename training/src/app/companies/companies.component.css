@@ -1,0 +1,14 @@
+.pointer{
+    cursor: pointer;
+}
+
+.top{
+    margin-top: 100px;
+}
+.nav-color{
+    background-color: bisque;
+    padding: 10px;
+}
+.text-color{
+    text-decoration-color: black;
+}

@@ -1,0 +1,24 @@
+.pointer{
+    cursor: pointer;
+}
+
+.top{
+    margin-top: 30px;
+}
+
+.left{
+    margin-left: 15px;
+}
+.leftedit{
+    margin-left: 11px;
+}
+.lefttop{
+    margin-right: 110px;
+}
+.nav-color{
+    background-color: bisque;
+    padding: 10px;
+}
+.lefttop1{
+    margin-left: 200px;
+}

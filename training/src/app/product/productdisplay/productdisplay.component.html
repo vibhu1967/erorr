@@ -1,0 +1,60 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<nav class="navbar nav-color">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h4 class="navbar-brand">List Of products</h4>
+    </div>
+  </div>
+</nav>
+<div class="container master">
+  <div class="heading">
+    <h3>Product Name :{{ product.name }}</h3>
+  </div>
+  <div class="forms">
+    <div class="form1">
+      <h4>
+        <form>
+          <label>Product ID</label>
+          <input
+            type="text"
+            class="form-control color"
+            readonly
+            value="{{ product.id }}"
+          />
+        </form>
+        <form>
+          <label>Quantity </label>
+          <input
+            type="text"
+            class="form-control color"
+            readonly
+            value="{{ product.quantity }}"
+          />
+        </form>
+      </h4>
+    </div>
+    <div class="form2">
+      <h4>
+        <form>
+          <label>Description</label>
+          <input
+            type="text"
+            class="form-control color"
+            readonly
+            value="{{ product.description }}"
+          />
+        </form>
+      </h4>
+    </div>
+  </div>
+  <div class="Image">
+    <h4>
+      Download Image :
+      <span
+        (click)="download()"
+        class="glyphicon glyphicon-download-alt"
+      ></span>
+    </h4>
+  </div>
+</div>

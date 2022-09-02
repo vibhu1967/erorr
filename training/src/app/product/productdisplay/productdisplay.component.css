@@ -1,0 +1,48 @@
+.heading{
+    padding: 20px;
+   
+}
+.master{
+    padding: 50px;
+    border-width: 2px;
+    background-color:rgb(251, 243, 232);
+    border-style: solid;
+    margin-top: 90px;
+}
+.form2{
+    display:inline;
+    flex-direction: row;
+    
+}
+.Image{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+.forms{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+form{
+    display: flex;
+    padding: 5px;
+
+}
+label{
+    padding: 5px;
+    width: 250px;
+
+}
+
+.form2 input {
+    display: flex;
+    height: 80px;
+}
+.color{
+    background-color: white;
+}
+.nav-color{
+    background-color: bisque;
+    padding: 10px;
+}

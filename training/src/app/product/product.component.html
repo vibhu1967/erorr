@@ -1,0 +1,71 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<nav class="navbar nav-color">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h4 class="navbar-brand">Details of a Product</h4>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h4>
+    <div class="pull-right lefttop">Location:{{ factory.location }}</div>
+    <div class="pull-left">Factory Name:{{ factory.name }}</div>
+  </h4>
+</div>
+<div class="container">
+  <h4 class="pull-left top">
+    Add Product
+    <i
+      routerLink="/factories/{{ factory.id }}/products/addnew"
+      class="glyphicon glyphicon-plus pointer"
+    ></i>
+  </h4>
+</div>
+<div class="container table-responsive top">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product name</th>
+        <th>Quantity</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td
+          routerLink="/factories/{{ factory.id }}/products/{{
+            product.id
+          }}/display"
+          class="pointer"
+          (click)="Send(product)"
+          (click)="Image(product.file.name)"
+        >
+          {{ product.name }}
+        </td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <i
+            routerLink="/factories/{{ factory.id }}/products/{{
+              product.id
+            }}/edit"
+            class="glyphicon glyphicon-edit leftedit pointer"
+            (click)="Send1(product)"
+          ></i>
+        </td>
+        <td>
+          <i
+            class="glyphicon glyphicon-trash left pointer"
+            (click)="deleteProduct(product.id)"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="pull-left lefttop1">
+  <button (click)="back()">Back</button>
+</div>

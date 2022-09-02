@@ -1,0 +1,74 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<nav class="navbar nav-color">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h4 class="navbar-brand">Add a New Product</h4>
+    </div>
+  </div>
+</nav>
+
+<div class="container master">
+  <div class="heading">
+    <h3>Create a new product</h3>
+  </div>
+  <h4>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="forms">
+        <div class="form1">
+          <label>Factory ID<span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="redirect.id"
+            formControlName="identity"
+            required
+            readonly
+          />
+          <small class="form-text text-danger">You can't change ID</small>
+
+          <div>
+            <label>Name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              formControlName="name"
+              required
+            />
+          </div>
+          <label>Quantity</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Quantity"
+            formControlName="quantity"
+            required
+          />
+        </div>
+      </div>
+      <div class="form2">
+        <label for="file">Description</label>
+        <input
+          type="text"
+          class="form-control form2 input"
+          placeholder="Description"
+          formControlName="description"
+        />
+      </div>
+      <div class="Image">
+        <label for="image">Select Image</label>
+        <input
+          formControlName="image"
+          type="file"
+          class="form-control"
+          accept="image/*"
+          (change)="onFileChange($event)"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+        Submit
+      </button>
+    </form>
+  </h4>
+</div>
