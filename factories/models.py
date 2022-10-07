@@ -2,7 +2,7 @@ from django.db import models
 
 
 def upload_path(instance, filename):
-    return '/'.join(['images', filename])
+    return '/'.join([filename])
 
 
 class Companies(models.Model):

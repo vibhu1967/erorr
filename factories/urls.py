@@ -7,4 +7,6 @@ urlpatterns = [
     path('<int:id>', Home.as_view()),
     path('<int:id>/products', Product.as_view()),
     path('products/<int:id>', Product.as_view()),
+
+
 ]

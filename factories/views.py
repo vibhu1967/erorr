@@ -1,9 +1,12 @@
 
 
+from pathlib import Path
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from rest_framework.views import APIView, Response
+
+from factories.azure_file_controller import upload_file_to_blob
 from .models import Companies, Products
 
 from .serializers import HomeSerializer, ProductSerializer
@@ -25,12 +28,18 @@ class Home(APIView):
 class Product(APIView):
 
     def post(self, request):
-        serializer = ProductSerializer(data=request.data)
+        data = request.data
+        serializer = ProductSerializer(data=data)
         serializer.is_valid(raise_exception=True)
+        file = request.FILES['image']
+        ext = Path(file.name).suffix
+        new_file = upload_file_to_blob(file)
+        data['image'].name = new_file
         serializer.save()
         return JsonResponse(serializer.data)
 
     def get(self, request, id=None):
+
         if id:
             item = Products.objects.get(id=id)
             serializer = ProductSerializer(item)
@@ -41,6 +50,7 @@ class Product(APIView):
         return Response({"data": serializer.data})
 
     def put(self, request, *args, **kwargs):
+        data = request.data
         model_id = kwargs.get("id", None)
         if not model_id:
             return JsonResponse({"error": "method /PUT/ not allowed"})
@@ -49,7 +59,7 @@ class Product(APIView):
         except:
             return JsonResponse({"error": "Object does not exist"})
 
-        serializer = ProductSerializer(data=request.data, instance=instance)
+        serializer = ProductSerializer(data=data, instance=instance)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return JsonResponse({"data": serializer.data})

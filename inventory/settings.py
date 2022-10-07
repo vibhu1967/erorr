@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+from inventory.keyvault import *
+from .resources import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,11 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a(*5c)*8*gza*x93l=ur822^&@7+0#h^+x^%+ci_87auib=1f&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
+    'https://vaibhavfrontend.azurewebsites.net',
 ]
 
 
@@ -94,13 +98,13 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'vaibhavdb',
-        'HOST': 'assessmentserverget.database.windows.net',
-        'PORT': '1433',
+        'ENGINE': 'mssql',
+        'NAME': DBName,
+        'HOST': DBHost,
+        # 'PORT': '1433',
         'Trusted_Connection': 'yes',
-        'USER': 'dbadmin',
-        'PASSWORD': 'Admin123',
+        'USER': gets_secerts(vault_url, "dbuser"),
+        'PASSWORD': gets_secerts(vault_url, "dbpass"),
         'OPTIONS': {
             'driver': 'ODBC Driver 18 for SQL Server',
         },
@@ -154,4 +158,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'factories-home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/'
+CSRF_TRUSTED_ORIGINS = ['https://vaibhavback-end.azurewebsites.net']
+
+key_vault = key_vault
+AZURE_STORAGE_ACCOUNT = gets_secerts(vault_url, "Sas"),
+AZURE_APP_BLOB_NAME = AZURE_APP_BLOB_NAME
+AZURE_BLOB_PATH = AZURE_BLOB_PATH
